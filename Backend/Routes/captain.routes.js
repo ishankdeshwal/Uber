@@ -12,6 +12,12 @@ router.post('/register',[
     body('vehicle.capacity').isInt({min:1}).withMessage('Must be atleast 1 capacity'),
     body('vehicle.vehicleType').isIn(['car', 'bike', 'auto']).withMessage('Invalid Vehicle Type'),
 ],captainController.registerCaptain)
+router.post('/login',[
+    body('email').isEmail().withMessage('Invalid Email'),
+    body('password').isLength({min:6}).withMessage('Password must be atleast 6 Characters'),
+],captainController.loginCaptain)
+router.get('/profile',captainController.getCaptainProfile)  
+router.get('/logout',captainController.logoutCaptain)
 
 
 module.exports = router;
