@@ -36,4 +36,7 @@ module.exports.authCaptain=async (req,res,next)=>{
         const captain=await captainModel.findById(decoded._id)
         req.captain=captain
         return next()
+    } catch(err) {
+        return res.status(401).json({message:'Unauthorized'})
+    }
 }
